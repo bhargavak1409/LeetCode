@@ -17,8 +17,7 @@ class ListNode:
         self.val = x
         self.next = None
 
-
-class Solution(object):
+class Solution():
     def addTwoNumbers(self, l1, l2):
         """
         :type l1: ListNode
@@ -29,14 +28,17 @@ class Solution(object):
         current, carry = dummy, 0
 
         while l1 or l2:
-            val = carry
+            val = 0
             if l1:
                 val += l1.val
                 l1 = l1.next
             if l2:
                 val += l2.val
                 l2 = l2.next
+                        
+            val = val+carry
             carry, val = divmod(val, 10)
+            
             current.next = ListNode(val)
             current = current.next
 
@@ -44,3 +46,4 @@ class Solution(object):
             current.next = ListNode(1)
 
         return dummy.next
+    
